@@ -1,0 +1,22 @@
+<ng-container class="form-group" [formGroup]="group">
+  <mat-form-field>
+    <mat-select placeholder="Country" formControlName="country">
+      <mat-option value="">Select</mat-option>
+      <mat-option *ngFor="let country of countries" [value]="country.value">
+        {{country.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('country').errors?.required">
+    country is required.
+  </span>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Post code" value="" formControlName="postCode">
+  </mat-form-field>
+   <span class="ng-invalid" *ngIf="formSubmitted && group.get('postCode').errors?.pattern">
+    invalid format {{group.get('country').value}} postcode
+  </span>
+  <span class="ng-invalid" *ngIf="formSubmitted && group.get('postCode').errors?.required">
+    post code is required
+  </span>
+</ng-container>

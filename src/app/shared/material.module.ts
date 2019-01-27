@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,
@@ -25,6 +26,7 @@ import {
 } from '@angular/material';
 
 const materialModules = [
+  MatAutocompleteModule,
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,

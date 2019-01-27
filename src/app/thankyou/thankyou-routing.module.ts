@@ -1,11 +1,11 @@
-import { PersonalDataFormComponent } from './components/personal-data-form/personal-data-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: PersonalDataFormComponent
+        component: IndexComponent
     }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class EnterRoutingModule { }
+export class ThankyouRoutingModule { }

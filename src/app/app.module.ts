@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
     ],
     imports: [
         BrowserModule,
-        CoreModule,
+        CoreModule.forRoot(),
         BrowserAnimationsModule,
         SharedModule
     ],

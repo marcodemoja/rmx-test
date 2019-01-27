@@ -1,0 +1,34 @@
+<ng-container [formGroup]="group">
+  <div class="form-group">
+    <mat-form-field>
+      <mat-select placeholder="Title" formControlName="title">
+        <mat-option value="">Select</mat-option>
+        <mat-option *ngFor="let title of titles" [value]="title.value">
+          {{title.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('title').errors?.required">
+      title is required.
+    </span> 
+  </div>
+  <div class="form-group">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="First name" value="" formControlName="firstName">
+    </mat-form-field>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('firstName').errors?.required">first
+      name is required.</span>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('firstName').errors?.pattern">
+      first name must contains only letters
+    </span> 
+  </div>
+  <div class="form-group">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Last name" value="" formControlName="lastName">
+    </mat-form-field>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('lastName').errors?.required">last name is
+      required.</span>
+    <span class="ng-invalid" *ngIf="formSubmitted && group.get('lastName').errors?.pattern">last name must contain only
+      letters.</span>
+  </div>
+</ng-container>

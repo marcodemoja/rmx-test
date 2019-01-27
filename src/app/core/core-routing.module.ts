@@ -3,18 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'enter',
-        pathMatch: 'full'
-    },
-    {
         path: 'thankyou',
         loadChildren: '../thankyou/thankyou.module#ThankyouModule'
     },
     {
         path: 'enter',
         loadChildren: '../enter/enter.module#EnterModule'
+    },
+    {
+        path: '',
+        redirectTo: '/enter',
+        pathMatch: 'full'
     }
+
 ];
 
 @NgModule({

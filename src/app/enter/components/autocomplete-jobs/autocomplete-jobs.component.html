@@ -1,0 +1,20 @@
+<div [formGroup]="JobsForm" class="full-width">
+  <mat-form-field class="full-width">
+    <input matInput [hidden]="selectedValue !== ''" [placeholder]="placeholder" [matAutocomplete]="autocomplete" [matAutocompleteDisabled]="!autocomplete"
+      formControlName="userInput">
+      <div  *ngIf="selectedValue !== ''"  class="full-width">
+          <span><i>{{ selectedValue }}</i><button mat-button (click)="resetSelection();"><mat-icon>close</mat-icon></button></span>
+        </div>
+    </mat-form-field>
+  
+  <mat-autocomplete #autocomplete="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngIf="isLoading" class="is-loading">
+      <mat-spinner diameter="50"></mat-spinner>
+    </mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let job of filteredJobs" [value]="job">
+        <span>{{ job }}</span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</div>
