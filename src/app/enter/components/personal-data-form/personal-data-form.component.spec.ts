@@ -14,7 +14,7 @@ const personalDataService = new PersonalDataService();
 const router = {};
 const formBuilder: FormBuilder = new FormBuilder();
 
-fdescribe('PersonalDataFormComponent', () => {
+describe('PersonalDataFormComponent', () => {
   let component: PersonalDataFormComponent;
   let fixture: ComponentFixture<PersonalDataFormComponent>;
 

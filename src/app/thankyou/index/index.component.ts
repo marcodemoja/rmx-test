@@ -18,12 +18,12 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
 
     this.personalDataService.currentData.pipe(
-      tap((data) => {}),
+      tap(data => data),
       distinctUntilChanged()
     ).subscribe((data) => this.data = data);
     // console.log(this.data);
 
-    if (!this.data.hasOwnProperty('fullname')) {
+    if (this.data.fullname.firstName === '') {
       this.router.navigateByUrl('enter');
     }
   }
