@@ -29,12 +29,12 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class CoreModule {
 
-    constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+/*    constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
         if (parentModule) {
           throw new Error(
             'CoreModule must be imported in AppModule only!');
         }
-    }
+    }*/
 
     static forRoot(): ModuleWithProviders {
         return {

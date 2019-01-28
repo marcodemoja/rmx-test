@@ -5,3 +5,9 @@
 html, body {
     height:100%;
 }
+.full-width {
+    width:100%;
+}
+.aligh-right {
+    text-align:right;
+}

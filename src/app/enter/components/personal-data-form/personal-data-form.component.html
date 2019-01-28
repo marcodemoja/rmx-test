@@ -2,16 +2,16 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="box">
     <app-first-last-name-form-group 
-      [formSubmitted]="formSubmitted" 
       [group]="form.get('fullname')">
     </app-first-last-name-form-group>
     
     <div class="form-group">
       <mat-form-field class="full-width">
         <input matInput placeholder="email" value="" formControlName="email">
+        <mat-error *ngIf="form.controls.email.touched && form.controls.email.hasError('email')">
+            <strong>Invalid</strong> email format
+          </mat-error>
       </mat-form-field>
-      <span class="ng-invalid" *ngIf="formSubmitted && form.controls.email.errors?.email">
-        has to be a valid email.</span>
     </div>
   </div>
   
@@ -21,11 +21,10 @@
         <input type="hidden" [ngModel]="appJobAutocomplete.selectedValue" formControlName="occupation" >
     </div>
     <app-address-form-group 
-      [formSubmitted]="formSubmitted" 
       [group]="form.get('address')">
     </app-address-form-group>
   </div>
-  <div class="full-width">
+  <div class="full-width align-right">
       <button type="submit" (click)="onSubmit()">
         Submit Data
       </button>

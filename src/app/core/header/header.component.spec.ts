@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,6 +9,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MaterialModule
+      ],
       declarations: [ HeaderComponent ]
     })
     .compileComponents();

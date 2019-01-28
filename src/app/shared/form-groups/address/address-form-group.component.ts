@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,9 +7,6 @@ import { Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./address-form-group.component.css']
 })
 export class AddressFormGroupComponent implements OnInit {
-
-  @Input()
-  formSubmitted = false;
 
   @Input()
   group: FormGroup;
@@ -26,21 +23,21 @@ export class AddressFormGroupComponent implements OnInit {
       country.setValidators([Validators.required]);
 
       country.valueChanges.subscribe((data) => {
-        console.log(data);
           switch (data) {
             case 'uk':
               postCode.reset();
               postCode.setValidators([
                 Validators.pattern('^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabdhjlnp-uw-z]{2}$'),
                 Validators.required]);
+                postCode.updateValueAndValidity();
               break;
             case 'ie':
               postCode.reset();
               postCode.setValidators([Validators.pattern('^[a-zA-z0-9]{6,10}$')]);
+              postCode.updateValueAndValidity();
               break;
           }
         });
-        postCode.updateValueAndValidity();
   }
 
 }

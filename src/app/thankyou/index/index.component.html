@@ -1,17 +1,15 @@
-<mat-card class="mat-typography">
-<mat-card-title class="mat-display-1">Thank you for your submission!</mat-card-title>
-<mat-card-subtitle class="mat-h2">Your personal data as follow:</mat-card-subtitle>
-<mat-card-content class ="mat-body-1">
-  <mat-list *ngIf="data">
-    <mat-list-item><span>Name:</span> <i>{{  data.firstName + " " + data.lastName}}</i></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngIf="data.email !== ''"><span>Email:</span><i>{{ data.email }}</i></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngIf="data.occupation !== ''"><span>Occupation:</span><i>{{ data.occupation }}</i></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item><span>Country:</span> <i>{{ data.address?.country }}</i></mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngIf="data.address?.postCode !== ''"><span>Post code:</span> <i>{{ data.address?.postCode }}</i></mat-list-item>
+<mat-card class="mat-typography" *ngIf="data">
+  <mat-card-title class="mat-display-1">Thank you for your submission.</mat-card-title>
+  <mat-card-subtitle class="mat-h2">{{ data.fullname?.title + " " + data.fullname?.firstName + " " + data.fullname?.lastName}}</mat-card-subtitle>
+  <mat-card-content class ="mat-body-1">
+    <mat-list *ngIf="data">
+      <mat-list-item *ngIf="data.email !== ''"><span>Email:</span><i>{{ data.email }}</i></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="data.occupation !== ''"><span>Occupation:</span><i>{{ data.occupation }}</i></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Country:</span> <i>{{ data.address?.country }}</i></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="data.address?.postCode !== ''"><span>Post code:</span> <i>{{ data.address?.postCode }}</i></mat-list-item>
   </mat-list>
 </mat-card-content>
 </mat-card>

@@ -1,11 +1,19 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OccupationService } from './occupation.service';
+import { HttpClient } from '@angular/common/http';
 
 describe('OccupationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OccupationService]
+      imports: [
+        HttpClientModule
+      ],
+      providers: [
+        OccupationService,
+        HttpClient
+      ]
     });
   });
 

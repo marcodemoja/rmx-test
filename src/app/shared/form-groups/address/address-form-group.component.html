@@ -1,22 +1,26 @@
 <ng-container class="form-group" [formGroup]="group">
-  <mat-form-field>
+  <div class="form-group">
+  <mat-form-field class="full-width">
     <mat-select placeholder="Country" formControlName="country">
       <mat-option value="">Select</mat-option>
       <mat-option *ngFor="let country of countries" [value]="country.value">
         {{country.label}}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="group.get('country').touched && group.get('country').errors?.required">
+        country is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
-    <span class="ng-invalid" *ngIf="formSubmitted && group.get('country').errors?.required">
-    country is required.
-  </span>
+</div>
+<div class="form-group">
   <mat-form-field class="full-width">
     <input matInput placeholder="Post code" value="" formControlName="postCode">
+    <mat-error *ngIf="group.get('postCode').touched && group.get('postCode').errors?.pattern">
+        invalid format {{group.get('country').value}} postcode
+    </mat-error>
+      <mat-error *ngIf="group.get('postCode').touched && group.get('postCode').errors?.required">
+        post code is required
+      </mat-error>
   </mat-form-field>
-   <span class="ng-invalid" *ngIf="formSubmitted && group.get('postCode').errors?.pattern">
-    invalid format {{group.get('country').value}} postcode
-  </span>
-  <span class="ng-invalid" *ngIf="formSubmitted && group.get('postCode').errors?.required">
-    post code is required
-  </span>
+</div>
 </ng-container>

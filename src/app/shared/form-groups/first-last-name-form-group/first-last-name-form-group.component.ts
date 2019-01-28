@@ -9,9 +9,6 @@ import { FormGroup, Validators } from '@angular/forms';
 export class FirstLastNameFormGroupComponent implements OnInit {
 
   @Input()
-  formSubmitted = false;
-
-  @Input()
   group: FormGroup;
 
   titles = [{label: 'Mr', value: 'mr'}, {label: 'Ms', value: 'ms'}];
@@ -23,7 +20,7 @@ export class FirstLastNameFormGroupComponent implements OnInit {
     const firstName = this.group.get('firstName');
     const title = this.group.get('title');
 
-    firstName.setValidators([Validators.required, Validators.pattern('[a-zA-Z]*')])
+    firstName.setValidators([Validators.required, Validators.pattern('[a-zA-Z]*')]);
     lastName.setValidators([Validators.required, Validators.pattern('[a-zA-Z ]*')]);
     title.setValidators([Validators.required]);
 

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexComponent } from './index.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { PersonalDataService } from 'src/app/core/services/personal-data.service';
+import { RouterModule, Router } from '@angular/router';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -8,7 +11,15 @@ describe('IndexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IndexComponent ]
+      imports: [
+        SharedModule,
+        RouterModule
+      ],
+      declarations: [ IndexComponent ],
+      providers: [
+        PersonalDataService,
+        { provide: Router, useClass: class { navigateByUrl = jasmine.createSpy('navigateByUrl'); } }
+      ]
     })
     .compileComponents();
   }));

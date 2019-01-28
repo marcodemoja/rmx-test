@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonalData } from 'src/app/core/models/personal-data.model';
+import { IPersonalData } from 'src/app/core/interfaces/personal-data';
 import { PersonalDataService } from 'src/app/core/services/personal-data.service';
 import { Router } from '@angular/router';
+import { distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
@@ -10,16 +11,19 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  data: PersonalData;
+  data: IPersonalData;
 
   constructor(private personalDataService: PersonalDataService, private router: Router) { }
 
   ngOnInit() {
 
-    this.personalDataService.currentData.subscribe((data) => this.data = data);
-    console.log(this.data);
+    this.personalDataService.currentData.pipe(
+      tap((data) => {}),
+      distinctUntilChanged()
+    ).subscribe((data) => this.data = data);
+    // console.log(this.data);
 
-    if (!this.data.hasOwnProperty('firstName')) {
+    if (!this.data.hasOwnProperty('fullname')) {
       this.router.navigateByUrl('enter');
     }
   }

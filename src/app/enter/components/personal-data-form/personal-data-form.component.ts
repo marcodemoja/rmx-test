@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PersonalData } from '../../../core/models/personal-data.model';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { IPersonalData } from '../../../core/interfaces/personal-data';
 import { PersonalDataService } from './../../../core/services/personal-data.service';
 
 
@@ -13,9 +13,8 @@ import { PersonalDataService } from './../../../core/services/personal-data.serv
 export class PersonalDataFormComponent implements OnInit {
 
   form: FormGroup;
-  formSubmitted = false;
 
-  personalData: PersonalData;
+  personalData: IPersonalData;
 
   @ViewChild('appJobAutocomplete')
   appJobAutocomplete;
@@ -43,15 +42,25 @@ export class PersonalDataFormComponent implements OnInit {
 
   }
 
+  validateFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+
+      if (control instanceof FormControl) {
+          control.markAsTouched({onlySelf: true});
+      } else if (control instanceof FormGroup) {
+        this.validateFormFields(control);
+      }
+    });
+  }
+
   onSubmit(value) {
-    this.formSubmitted = true;
-
     if (this.form.invalid) {
+      this.validateFormFields(this.form);
       return;
+    } else {
+      this.personalDataService.setCurrentData(<IPersonalData>value);
+      this.router.navigateByUrl('/thankyou');
     }
-
-    this.personalDataService.setCurrentData(<PersonalData>value);
-    this.router.navigateByUrl('/thankyou');
-
   }
 }
