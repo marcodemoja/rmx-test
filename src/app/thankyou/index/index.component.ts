@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
     ).subscribe((data) => this.data = data);
     // console.log(this.data);
 
-    if (this.data.fullname.firstName === '') {
+    if (!this.data.hasOwnProperty('fullname')) {
       this.router.navigateByUrl('enter');
     }
   }
