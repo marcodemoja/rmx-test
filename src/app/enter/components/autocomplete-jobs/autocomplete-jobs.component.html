@@ -6,7 +6,7 @@
       [matAutocomplete]="autocomplete" 
       [matAutocompleteDisabled]="!autocomplete"
       formControlName="userInput"
-      (focusout)="resetSelection();">
+     >
       <div  *ngIf="selectedValue !== ''"  class="full-width">
           <span><i>{{ selectedValue }}</i><button mat-button (click)="resetSelection();"><mat-icon>close</mat-icon></button></span>
         </div>
