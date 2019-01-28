@@ -42,7 +42,7 @@ export class AutocompleteJobsComponent implements OnInit {
           .pipe(
             retryWhen(errors => errors
               .pipe(
-                tap(val => console.log(val))
+                tap(val => val)
               )),
             finalize(() => this.isLoading = false),
             )
@@ -51,7 +51,7 @@ export class AutocompleteJobsComponent implements OnInit {
         .subscribe((jobs) => {
           this.filteredJobs = jobs.map(x => x.suggestion);
         }, (error) => {
-          console.log(error);
+          // console.log(error);
           this.filteredJobs = [];
         });
 
