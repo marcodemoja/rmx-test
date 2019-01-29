@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LayoutComponent } from './layout/layout.component';
-import { PersonalDataService } from './services/personal-data.service';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { OccupationService } from './services/occupation.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule
     ],
     declarations: [SidebarComponent, HeaderComponent, LayoutComponent],
-    providers: [PersonalDataService, OccupationService],
+    providers: [OccupationService],
     exports: [
         RouterModule,
         HeaderComponent,
@@ -39,7 +38,7 @@ export class CoreModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: CoreModule,
-            providers: [PersonalDataService, OccupationService]
+            providers: [OccupationService]
         };
     }
 }

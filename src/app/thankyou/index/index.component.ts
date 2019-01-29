@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IPersonalData } from 'src/app/core/interfaces/personal-data';
-import { PersonalDataService } from 'src/app/core/services/personal-data.service';
+import { IPersonalData } from 'src/app/interfaces/personal-data';
 import { Router } from '@angular/router';
-import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from 'src/app/store';
 
 @Component({
   selector: 'app-index',
@@ -13,18 +13,15 @@ export class IndexComponent implements OnInit {
 
   data: IPersonalData;
 
-  constructor(private personalDataService: PersonalDataService, private router: Router) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private router: Router) { }
 
   ngOnInit() {
+    const appState = this.ngRedux.getState();
 
-    this.personalDataService.currentData.pipe(
-      tap(data => data),
-      distinctUntilChanged()
-    ).subscribe((data) => this.data = data);
-    // console.log(this.data);
-
-    if (!this.data.hasOwnProperty('fullname')) {
+    if (appState.personalData.fullname.firstName === '') {
       this.router.navigateByUrl('enter');
+    } else {
+      this.data = appState.personalData;
     }
   }
 

@@ -1,8 +1,10 @@
+import { UPDATE_PERSONAL_DATA } from 'src/app/actions/personal-data';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { IPersonalData } from '../../../core/interfaces/personal-data';
-import { PersonalDataService } from './../../../core/services/personal-data.service';
+import { IPersonalData } from 'src/app/interfaces/personal-data';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from 'src/app/store';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class PersonalDataFormComponent implements OnInit {
   @ViewChild('appJobAutocomplete')
   appJobAutocomplete;
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.buildForm();
@@ -59,7 +61,8 @@ export class PersonalDataFormComponent implements OnInit {
       this.validateFormFields(this.form);
       return;
     } else {
-      this.personalDataService.setCurrentData(<IPersonalData>value);
+      const data: IPersonalData = value;
+      this.ngRedux.dispatch({type: UPDATE_PERSONAL_DATA, data});
       this.router.navigateByUrl('/thankyou');
     }
   }

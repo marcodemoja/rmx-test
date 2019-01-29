@@ -1,5 +1,4 @@
 import { FormBuilder } from '@angular/forms';
-import { PersonalDataService } from 'src/app/core/services/personal-data.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PersonalDataFormComponent } from './personal-data-form.component';
 import { AutocompleteJobsComponent } from '../autocomplete-jobs/autocomplete-jobs.component';
@@ -9,8 +8,8 @@ import { CommonModule } from '@angular/common';
 import { OccupationService } from 'src/app/core/services/occupation.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgRedux } from '@angular-redux/store';
 
-const personalDataService = new PersonalDataService();
 const router = {};
 const formBuilder: FormBuilder = new FormBuilder();
 
@@ -28,7 +27,7 @@ describe('PersonalDataFormComponent', () => {
       ],
       declarations: [PersonalDataFormComponent, AutocompleteJobsComponent],
       providers: [
-        { provide: PersonalDataService, useValue: personalDataService},
+        NgRedux,
         { provide: Router, useValue: router},
         { provide: FormBuilder, useValue: formBuilder},
         { provide: OccupationService, useClass: class { search = jasmine.createSpy('search'); } }
